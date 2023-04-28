@@ -10,7 +10,7 @@ galleryPictures.insertAdjacentHTML("beforeend", newGallery);
 galleryPictures.addEventListener("click", onGalleryPictures);
 let selectedPicture = null;
 
-console.log(galleryPictures);
+// console.log(galleryPictures);
 
 function createPicturesMarkup(picture) {
   return picture
@@ -31,10 +31,10 @@ function createPicturesMarkup(picture) {
     .join(" ");
 }
 
-console.log(galleryItems);
-
 function onGalleryPictures(evt) {
   evt.preventDefault();
+
+  window.addEventListener("keydown", onEscPress);
 
   const isPicture = evt.target.classList.contains("gallery__image");
   if (!isPicture) {
@@ -42,11 +42,19 @@ function onGalleryPictures(evt) {
   }
 
   const largePicture = evt.target.dataset.source;
-  console.log(largePicture);
+  // console.log(largePicture);
 
   selectedPicture = basicLightbox.create(`<img src = ${largePicture}>`);
   selectedPicture.show();
-  selectedPicture.show(() => console.log("lightbox now visible"));
+  // selectedPicture.show(() => console.log("lightbox now visible"));
 
-  console.log(selectedPicture);
+  // console.log(selectedPicture);
+}
+
+console.log(galleryItems);
+
+function onEscPress(evt) {
+  selectedPicture.close();
+  window.removeEventListener("keydown", onEscPress);
+  // console.log(evt);
 }
