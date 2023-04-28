@@ -54,7 +54,10 @@ function onGalleryPictures(evt) {
 console.log(galleryItems);
 
 function onEscPress(evt) {
-  selectedPicture.close();
-  window.removeEventListener("keydown", onEscPress);
-  // console.log(evt);
+  // console.log(evt.code);
+  if (evt.code === "Escape") {
+    selectedPicture.close();
+    window.removeEventListener("keydown", onEscPress);
+    // console.log(evt);
+  }
 }
